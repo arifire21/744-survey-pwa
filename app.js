@@ -66,11 +66,12 @@ investmentNoInput.addEventListener('click', function(){
   // investment = investmentNoInput.value;
 })
 
+let timestamp = '';
+
 // Listen to form submissions.
 form.addEventListener("submit", (event) => {
   // Prevent the form from submitting to the server since everything is client-side.
   event.preventDefault();
-  let timestamp = '';
 
   // Get values
   const teamNumber = teamNumberInput.value;
@@ -110,7 +111,7 @@ form.addEventListener("submit", (event) => {
   }
 
   // Store in our client-side storage.
-  storeNewLog(teamNumber, drivetrain, vision, scoreHeights, climbHeight, gamePieces, pickup, name, investment, timestamp);
+  storeNewLog(timestamp, teamNumber, drivetrain, vision, scoreHeights, climbHeight, gamePieces, pickup, name, investment);
 
   // Refresh the UI.
   renderPastLogs();
@@ -144,12 +145,12 @@ function checkOptional(){
   // Add the storage key as an app-wide constant
 const STORAGE_KEY = "robotics-pwa-pit";
 
-function storeNewLog(teamNumber, drivetrain, startPositions, vision, scoreHeights, climbHeight, gamePieces, pickup, name, investment, timestamp) {
+function storeNewLog(timestamp, teamNumber, drivetrain, startPositions, vision, climbHeight, scoreHeights, gamePieces, pickup, name, investment) {
   // Get data from storage.
   const logs = getAllStoredLogs();
 
   // Add the new log object to the end of the array of log objects.
-  logs.push({ teamNumber, drivetrain, startPositions, vision, scoreHeights, climbHeight, gamePieces, pickup, name, investment, timestamp });
+  logs.push({timestamp, teamNumber, drivetrain, startPositions, vision, climbHeight, scoreHeights, gamePieces, pickup, name, investment });
 
   // Sort the array so that logs are ordered by timestamp for now, may change to team number
   logs.sort((a, b) => {
@@ -191,7 +192,7 @@ function renderPastLogs() {
     // Loop over all logs and render them.
     logs.forEach((log) => {
       const logEl = document.createElement("li");
-      logEl.textContent = `[${log.timestamp}] Team: ${log.teamNumber} Student Name: ${log.name}`;
+      logEl.textContent = `[${log.timestamp}] Team: ${log.teamNumber},  DT choice: ${log.drivetrain}, Preferred start position(s): ${log.startPositions}, Vision: ${log.vision}, Highest climb height: ${log.climbHeight}, Scoring height(s): ${log.scoreHeights}, Game piece(s): ${log.gamePieces}, Pickup location(s): ${log.pickup}, name: ${log.name}, Is surveyor invested in ${log.teamNumber}?: ${log.investment}`;
       pastLogList.appendChild(logEl);
     });
   

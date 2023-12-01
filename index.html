@@ -102,7 +102,7 @@
             
             <p>[Camera -- multiple angles]</p>
 
-            <p>Do you think this team worth investigating? <sup class="req">*</sup></p>
+            <p>Do you think this team worth is investigating? <sup class="req">*</sup></p>
             <input type="radio" id="yes-final" name="final-inves" value="Yes" required>
             <label for="yes-final">Yes</label><br>
             <input type="radio" id="no-final" name="final-inves" value="No" required>
@@ -135,7 +135,7 @@
     <!-- register the main service worker -->
     <script>
         if ("serviceWorker" in navigator) {
-            navigator.serviceWorker.register("sw.js").then(
+            navigator.serviceWorker.register("/repository/sw.js").then(
                 (registration) => {
                     console.log(`Service worker registration successful: ${registration}`);
                     alert(`Service worker registration successful: ${registration}`)

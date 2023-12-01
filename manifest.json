@@ -1,7 +1,8 @@
 {
     "name": "744 Pit Survey",
     "short_name": "Pit Survey",
-    "start_url" : "/",
+    "id": "/744-survey-pwa/",
+    "start_url" : "/744-survey-pwa/",
     "description": "Pit survey PWA for Team 744.",
     "icons": [
       {
