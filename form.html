@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pit Survey</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" href="icon-512.png"/>
+</head>
+<body>
+    <p id="install-prompt" style="background-color: #01a0bb; display: none;">Use this to install the app to the homescreen (only needed once)</p>
+    <button id="install" hidden>Install</button>
+
+    <br>
+
+    <form>
+        <fieldset>
+            <legend>Pit Survey Questions</legend>
+            <label for="team-number">Team Number <sup class="req">*</sup></label>
+            <input type="number" id="team-number" placeholder="todo autocomplete" required />
+            
+            <br>
+
+            <!-- todo: make radio buttons have images -->
+            <p>DriveTrain Type <sup class="req">*</sup></p>
+            <input type="radio" id="west-coast" name="drivetrain" value="West Coast Drive" required>
+            <label for="west-coast">West Coast Drive</label><br>
+            <input type="radio" id="tank" name="drivetrain" value="Tank" required>
+            <label for="tank">Tank (treads)</label><br>
+            <input type="radio" id="swerve" name="drivetrain" value="Swerve" required>
+            <label for="swerve">Swerve</label><br>
+            <input type="radio" id="other" name="drivetrain" value="Other" required>
+            <label for="other">Other</label>
+            
+            <br>
+
+            <p>Preferred Starting Position: <sup class="req">*</sup><br>
+            <small>(drive team can have multiple preferences)</small></p>
+            <input type="checkbox" id="left" name="start-pos" value="Left">
+            <label for="left">Left</label><br>
+            <input type="checkbox" id="center" name="start-pos" value="Center">
+            <label for="center">Center</label><br>
+            <input type="checkbox" id="right" name="start-pos" value="Right">
+            <label for="right">Right</label> 
+            
+            <br>
+
+            <p>Does the robot have vision tracking? <sup class="req">*</sup></p> 
+            <input type="radio" id="yes-vis" name="vision" value="Yes" required>
+            <label for="yes-vis">Yes</label><br>
+            <input type="radio" id="no-vis" name="vision" value="No" required>
+            <label for="no-vis">No</label>
+
+            <br>
+
+            <p>Which heights can the robot score from? <sup class="req">*</sup><br>
+            <small>(select all that apply)</small></p>
+            <input type="checkbox" id="low" name="score-height" value="Low">
+            <label for="left">Low</label><br>
+            <input type="checkbox" id="middle" name="score-height" value="Middle">
+            <label for="middle">Middle</label><br>
+            <input type="checkbox" id="high" name="score-height" value="High">
+            <label for="right">High</label> 
+                        
+            <br>
+
+            <p>What level can the robot climb to? <sup class="req">*</sup><br>
+            <small>(select highest level possible)</small></p>
+            <input type="radio" id="na-climb" name="climb-height" value="N/A" required>
+            <label for="na-climb">N/A</label><br>
+            <input type="radio" id="1-climb" name="climb-height" value="1" required>
+            <label for="1-climb">1</label><br>
+            <input type="radio" id="2-climb" name="climb-height" value="2" required>
+            <label for="2-climb">2</label><br>
+            <input type="radio" id="3-climb" name="climb-height" value="3" required>
+            <label for="3-climb">3</label>
+
+            <br>
+
+            <p>Can the robot hold X or Y game pieces? <sup class="req">*</sup></p>
+            <input type="radio" id="x-piece" name="game-pieces" value="X" required>
+            <label for="x-piece">X</label><br>
+            <input type="radio" id="y-piece" name="game-pieces" value="Y" required>
+            <label for="y-piece">Y</label><br>
+            <input type="radio" id="both-piece" name="game-pieces" value="Both" required>
+            <label for="tank">Both</label>
+            
+            <br>
+
+            <p>Where can the robot pick up game pieces from? <sup class="req">*</sup></p>
+            <input type="radio" id="floor-pickup" name="pickup" value="Floor" required>
+            <label for="floor">Floor</label><br>
+            <input type="radio" id="station-pickup" name="pickup" value="Human Player Station" required>
+            <label for="station-pickup">Human Player Station</label><br>
+            <input type="radio" id="both-pickup" name="pickup" value="Both" required>
+            <label for="both-pickup">Both</label>
+            
+            <br>
+
+            <p>[insert End Game questions as needed]</p>
+            
+            <p>[Camera -- multiple angles]</p>
+
+            <p>Do you think this team worth investigating? <sup class="req">*</sup></p>
+            <input type="radio" id="yes-final" name="final-inves" value="Yes" required>
+            <label for="yes-final">Yes</label><br>
+            <input type="radio" id="no-final" name="final-inves" value="No" required>
+            <label for="no-final">No</label><br>
+
+            <br>
+
+            <div id="feedback-container">
+                <label for="feedback" >Why? Please explain your reason.</label><br>
+                <textarea id="feedback" placeholder="We value your input!" rows="3" cols="15"></textarea>
+                
+                <br><br>
+            </div>
+
+            <label for="name">Your Full Name <sup class="req">*</sup></label>
+            <input type="text" id="name" placeholder="todo autocomplete" required />
+            
+            <br><br>
+
+            <button type="submit">Submit Survey</button>
+        </fieldset>
+    </form>
+
+    <br><br>
+
+    <section id="past-logs"></section>
+
+    <script src="app.js" defer></script>
+
+    <!-- register the main service worker -->
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("sw.js").then(
+                (registration) => {
+                    console.log(`Service worker registration successful: ${registration}`);
+                    alert(`Service worker registration successful: ${registration}`)
+                },
+                (error) => {
+                    console.error(`Service worker registration failed: ${error}`);
+                    alert(`Service worker registration failed: ${error}`)
+                },
+            );
+        } else {
+            console.error("Service workers are not supported.");
+            alert("Service workers are not supported.")
+        }
+    </script>
+</body>
+</html>
