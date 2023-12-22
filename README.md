@@ -3,7 +3,16 @@
 A progressive web application (PWA) made to streamline both survey times used during competitions
 
 ## Install Instructions
+### iOS -- Safari (iPhone and iPad)
+1. Click the Share Menu
+2. Click "Add to Home Screen"
+3. Leave app name as written
+4. Click "Add"
+
+### Android
 TBD
+
+The PWA is now available on your device, even offline!
 
 ## More to Come!
 - landing page
