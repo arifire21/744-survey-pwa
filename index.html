@@ -14,15 +14,19 @@
 
     <br>
 
-    <form>
+    <form autocomplete="off">
         <fieldset>
             <legend>Pit Survey Questions</legend>
             <label for="team-number">Team Number <sup class="req">*</sup></label>
-            <input type="number" id="team-number" placeholder="todo autocomplete" required />
+            <!-- <div class="autocomplete" style="width:300px;"> -->
+                <input type="number" id="team-number" required/>
+            <!-- </div> -->
+            <ul id="auto-results" style="display: none;"></ul>
+            <!-- <input id="team-number" type="search" pattern="[0-9]" dir="ltr" spellcheck=false autocorrect="off" autocomplete="off" autocapitalize="off" maxlength="2048" tabindex="1"> -->
             
             <br>
 
-            <!-- todo: make radio buttons have images -->
+            <!-- TODO: make radio buttons have images -->
             <p>DriveTrain Type <sup class="req">*</sup></p>
             <input type="radio" id="west-coast" name="drivetrain" value="West Coast Drive" required>
             <label for="west-coast">West Coast Drive</label><br>
@@ -98,11 +102,12 @@
             
             <br>
 
+            <!-- TODO: -->
             <p>[insert End Game questions as needed]</p>
             
             <p>[Camera -- multiple angles]</p>
 
-            <p>Do you think this team worth is investigating? <sup class="req">*</sup></p>
+            <p>Do you think this team is worth investigating? <sup class="req">*</sup></p>
             <input type="radio" id="yes-final" name="final-inves" value="Yes" required>
             <label for="yes-final">Yes</label><br>
             <input type="radio" id="no-final" name="final-inves" value="No" required>
@@ -118,7 +123,7 @@
             </div>
 
             <label for="name">Your Full Name <sup class="req">*</sup></label>
-            <input type="text" id="name" placeholder="todo autocomplete" required />
+            <input type="text" id="name" required />
             
             <br><br>
 

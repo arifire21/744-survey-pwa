@@ -1,9 +1,12 @@
+//import teams from './data.json';
+
 //form id's
 const form = document.getElementsByTagName('form')[0];
 const pastLogContainer = document.getElementById("past-logs");
 
 // required inputs -- only checkboxes, single radio values grabbed directly in method itself
 const teamNumberInput = document.getElementById('team-number');
+const autocompleteResults = document.getElementById("auto-results");
 const startPositionsInput = document.getElementsByName('start-pos');
 const scoreHeightsInput = document.getElementsByName('score-height');
 const nameInput = document.getElementById('name');
@@ -15,6 +18,13 @@ const feedbackInput = document.getElementById('feedback');
 //for the conditional feedback textarea
 const investmentYesInput = document.getElementsByName('final-inves')[0];
 const investmentNoInput = document.getElementsByName('final-inves')[1];
+
+const firstRoundTeams = ["744", "179", "180", "1", "2", "3", "59", "11111", "1234567890"];
+
+//adjust some stylingggggg
+autocompleteResults.style.width = teamNumberInput.style.width + 'px';
+// autocompleteResults.offsetLeft = teamNumberInput.offsetLeft;
+// autocompleteResults.offsetTop = teamNumberInput.offsetTop;
 
 //apparently this doesnt work on IOS (which is the current intended platform so)
 //behavior for handling install stuff
@@ -66,7 +76,46 @@ investmentNoInput.addEventListener('click', function(){
   // investment = investmentNoInput.value;
 })
 
-let timestamp = '';
+//autocomplete behavior
+function getResults(input) {
+  const results = [];
+  for (i = 0; i < firstRoundTeams.length; i++) {
+    if (input === firstRoundTeams[i].slice(0, input.length)) {
+      results.push(firstRoundTeams[i]);
+    }
+  }
+  return results;
+}
+
+teamNumberInput.addEventListener('input', (event) =>{
+// teamNumberInput.oninput = function () {
+  console.log(teamNumberInput.value)
+  let results = [];
+  let userInput = teamNumberInput.value;
+  autocompleteResults.innerHTML = "";
+  if(userInput.length == 0) {
+    autocompleteResults.style.display = "none";
+  }
+  if (userInput.length > 0) {
+    results = getResults(userInput);
+    autocompleteResults.style.display = "block";
+    if(results.length == 0){
+      autocompleteResults.innerHTML = 'No results.';
+    }else {
+      for (i = 0; i < results.length; i++) {
+        autocompleteResults.innerHTML += "<li>" + results[i] + "</li>";
+      }
+    }
+  }
+})
+
+autocompleteResults.addEventListener('click', (event) => {
+// autocompleteResults.onclick = function (event) {
+  const setValue = event.target.innerText;
+  teamNumberInput.value = setValue;
+  this.innerHTML = "";
+  autocompleteResults.style.display = "none";
+})
 
 // Listen to form submissions.
 form.addEventListener("submit", (event) => {
@@ -84,6 +133,7 @@ form.addEventListener("submit", (event) => {
   const investment = document.querySelector('input[name="final-inves"]:checked').value;
   let startPositions = ''
   let scoreHeights = ''
+  let timestamp = ''; //pre-submission
 
   startPositionsInput.forEach(position => {
     if(position.checked && startPositions === ''){
