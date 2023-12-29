@@ -10,7 +10,7 @@
 body {
     margin: 1vh 1vw;
     /* background-color: #efe; */
-    font-family: Inter, -apple-system;
+    font-family: Tahoma, -apple-system;
   }
   ul,
   fieldset {
@@ -36,17 +36,29 @@ body {
   }
 
   .btn {
-    text-decoration: none;
-    color: white;
     padding: 1rem;
     background-color: #01a0bb;
     border: none;
-    border-radius: 10px;
-    cursor: pointer;
+    border-radius: 15px;
+  }
+
+  .btn:disabled {
+    cursor: not-allowed;
   }
 
   .menu-btn {
     margin: 0 1rem;
+  }
+
+  .btn > a, .menu-btn > a {
+    color: #fff;
+    text-decoration: none;
+    padding: 1rem;
+  }
+
+  .btn > a:visited, .menu-btn > a:visited {
+    color: #fff;
+    text-decoration: none;
   }
 
   .form-btn {

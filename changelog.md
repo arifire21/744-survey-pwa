@@ -18,3 +18,8 @@
 - added "other" to drivetrain type, with text input
 - made media rule to start adjusting styling for ipad / mobile layout(s)
 - changed styling on buttons to let form ones center
+
+## v0.2.3
+- changed main font family to Tahoma
+- changed button structure to be proper button tags (a's on forms kept clipping)
+- added version number to homescreen, changed cache name
