@@ -11,3 +11,10 @@
 
 ## v0.1.2
 - implementing autocomplete from a static list that will be manually pushed (due to possible unreliable internet)
+
+## v0.2.2
+- added homescreen
+- added images to drivetrain input, custom styling to make labels look like buttons
+- added "other" to drivetrain type, with text input
+- made media rule to start adjusting styling for ipad / mobile layout(s)
+- changed styling on buttons to let form ones center

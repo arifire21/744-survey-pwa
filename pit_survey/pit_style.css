@@ -1,0 +1,89 @@
+#auto-results {
+    z-index: 10;
+    position: absolute;
+    margin-top: 0;
+    left: 7.5rem;
+    background-color: rgb(158, 209, 236);
+  }
+
+/* custom radio stuff */
+.radio-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+input[type='radio'][name='drivetrain'] {
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+
+.custom-radio {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    text-align: center;
+    background-color: rgb(245, 245, 245);
+    color: #0192ab;
+    padding: 1rem;
+    border: 3px solid transparent;
+    border-radius: 5px;
+    box-shadow:2px 2px lightgrey;    
+    cursor: pointer;
+}
+
+/* for keeping textbox close to button */
+#other-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#other-desc {
+    margin-top: 1.5rem;
+}
+
+/* .custom-radio:hover, .custom-radio:active {
+    filter: brightness(0.8);
+} */
+
+input[type='radio'][name='drivetrain']:checked  + label {
+    border-color: #0192ab;
+    box-shadow: none;
+}
+
+.custom-radio-image {
+    border-radius: 15px;
+    max-width: 400px;
+    max-height: 200px;
+    object-fit: contain;
+}
+
+.custom-other {
+    height: fit-content;
+    align-self: center;
+}
+
+/* #other-desc {
+    margin: 1.5rem 0;
+    float: right;
+    margin-right: 1rem;
+} */
+
+/* ipad sizing, intended device to use */
+@media (max-width:810px) {
+    .radio-container {
+        row-gap: 20px;
+    }
+
+    .custom-radio {
+        max-width: 220px;
+        font-size: 14pt;
+    }
+
+    .custom-radio-image {
+        max-width: 100%;
+        max-height: unset;
+    }
+}
