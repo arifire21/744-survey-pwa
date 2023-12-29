@@ -1,4 +1,4 @@
-const VERSION = "v0.1.2";
+const VERSION = "v0.2.2";
 const CACHE_NAME = `pit-survey-${VERSION}`
 
 const APP_STATIC_RESOURCES = [
